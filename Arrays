@@ -91,3 +91,18 @@ class Solution {
 TIME: O(N)
 SPACE: CONSTANT
 _______________________________________________________________
+6) best time to buy and sell stock
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxp=0;
+        int n=prices.length;
+        int minprice=Integer.MAX_VALUE;
+        for(int i=0;i<n;i++){
+            minprice=Math.min(minprice,prices[i]);
+            maxp=Math.max(maxp,prices[i]-minprice);
+        }
+        return maxp;
+    }
+}
+time: O(N)
+space: constant
