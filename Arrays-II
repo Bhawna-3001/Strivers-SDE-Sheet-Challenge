@@ -51,3 +51,42 @@ class Solution {
     }
 }
 time: 
+_______________________________________________________
+FIND MISSING AND REPEATING NO
+public class Solution {
+
+    public static int[] missingAndRepeating(ArrayList<Integer> arr, int n) {
+        // Write your code here
+        long s=0;
+        long sn=((long)n*((long)n+1))/2;
+        
+        long s2=0;
+        long s2n=((long)n*((long)n+1)*(2*(long)n+1))/6;
+        for(int i=0;i<n;i++){
+            s+=(long)arr.get(i);
+            s2+=(long)arr.get(i)*(long)arr.get(i);
+        }
+        long x=s-sn;//x-y
+        long y=(s2-s2n)/x;//x+y
+        long xans=(x+y)/2;
+        long yans=(y-xans);
+        int c=0;
+        int res[]=new int[2];
+        for(int i=0;i<n;i++){
+            if(arr.get(i)==(int)xans){
+                c++;
+            }
+        }
+        int missing=-1;
+        int repeat=-1;
+        if(c==2){
+            res[1]=(int)xans;
+            res[0]=(int)yans;
+        }else{
+            res[0]=(int)xans;
+            res[1]=(int)yans;
+        }
+        return res;
+    }
+}
+__________________________________________
