@@ -1,0 +1,19 @@
+#reverse linkedlist------------------------------------------
+class Solution {
+    public ListNode reverse(ListNode head, ListNode temp){
+        if(head!=null){
+            ListNode parent=head.next;
+            head.next=temp;
+            temp=head;
+            head=parent;
+            temp=reverse(head,temp);
+        }
+        return temp;
+    }
+    public ListNode reverseList(ListNode head) {
+        ListNode temp=null;
+        return reverse(head,temp);
+        
+    }
+}
+_______________________________________________________
