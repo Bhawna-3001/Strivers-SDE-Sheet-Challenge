@@ -25,3 +25,22 @@ class Solution {
 time: O(len of ll)+O(len-k)
 space: O(1)
 ______________________________________
+# remove duplicates from array
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int c=0;
+        for (int i=1;i<nums.length;i++){
+            if (nums[i]==nums[i-1]){
+                continue;
+            }else{
+                c++;
+                nums[c]=nums[i];
+            }
+        }
+        return c+1;
+    }
+}
+time: O(N)
+space: O(1)
+________________________________________________
+
