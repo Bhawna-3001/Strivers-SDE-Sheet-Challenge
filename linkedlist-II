@@ -40,7 +40,48 @@ public class Solution {
 time: O(N)
 space:O(1)
 ________________________________________________-
-# check whether linedlist is pallindrom
+# reverse ll in groups of k
+
+class Solution {
+    public int count(ListNode temp){
+        int c=0;
+        while(temp!=null){
+            c++;
+            temp=temp.next;
+        }
+        return c;
+    }
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if(head==null || head.next==null){
+            return head;
+        }
+        int len=count(head);
+        ListNode dummy=new ListNode(0);
+        dummy.next=head;
+        ListNode pre=dummy;
+        ListNode cur;
+        ListNode nex;
+        while(len>=k){
+            cur=pre.next;
+            nex=cur.next;
+            for(int i=1;i<k;i++){
+                cur.next=nex.next;
+                nex.next=pre.next;
+                pre.next=nex;
+                nex=cur.next;
+            }
+            pre=cur;
+            len-=k;
+        }
+        return dummy.next;
+        
+    }
+}
+time: O(N)
+space: O(1)
+_______________________________________________
+
+# check whether linkedlist is pallindrom
 
 class Solution {
     public ListNode reverse(ListNode temp){
