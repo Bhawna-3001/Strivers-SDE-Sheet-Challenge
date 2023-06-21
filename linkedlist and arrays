@@ -1,0 +1,27 @@
+# rotate the ll by k places to the right
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if(head==null || head.next==null || k==0){
+            return head;
+        }
+        int c=1;
+        ListNode temp=head;
+        while(temp.next!=null){
+            c++;
+            temp=temp.next;
+        }
+        temp.next=head;
+        k=k%c;
+        int end=c-k;
+        ListNode cur=head;
+        for(int i=1;i<end;i++){
+            cur=cur.next;
+        }
+        head=cur.next;
+        cur.next=null;
+        return head;
+    }
+}
+time: O(len of ll)+O(len-k)
+space: O(1)
+______________________________________
