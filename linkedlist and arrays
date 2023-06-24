@@ -43,4 +43,74 @@ class Solution {
 time: O(N)
 space: O(1)
 ________________________________________________
+# 3 sum
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> l=new ArrayList<>();
+        for(int i=0;i<nums.length-2;i++){
+            if(i==0 || (i>0 && nums[i]!=nums[i-1])){
+                int low=i+1;
+                int h=nums.length-1;
+                int sum=0-nums[i];
+                while(low<h){
+                    if(nums[low]+nums[h]==sum){
+                        List<Integer> s=new ArrayList<>();
+                        s.add(nums[i]);
+                        s.add(nums[low]);
+                        s.add(nums[h]);
+                        l.add(s);
+                    
+                        while(low<h && nums[low]==nums[low+1]){low++;}
+                        while(low<h && nums[h]==nums[h-1]){h--;}
+                        low++;
+                        h--;
+                    }else if(nums[low]+nums[h]<sum){
+                        low++;
+                    }else{
+                        h--;
+                    }
+                }
+            }
+            
+        }
+        return l;
+    }
+}
+    time: O(nlogn)+O(n^2)....O(N^2)
+    space: N^3
+__________________________________________
+ # trapping rainwater
+ 
+ class Solution {
+    public int trap(int[] height) {
+        int n=height.length;
+        int lmax=0;
+        int rmax=0;
+        int left=0;
+        int right=n-1;
+        int res=0;
+        while(left<right){
+            if(height[left]<=height[right]){
+                if(height[left]>=lmax){
+                    lmax=height[left];
+                }else{
+                    res+=lmax-height[left];
+                }
+                left++;
+            }else{
+                if(height[right]>=rmax){
+                    rmax=height[right];
+                }else{
+                    res+=rmax-height[right];
+                }
+                right--;
+            }
+        }
+        return res;
+    }
+}
+time:O(N)
+space: O(1)
+___________________________________________________
 
