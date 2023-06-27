@@ -1,0 +1,53 @@
+# sum of all subsets
+class Solution{
+    private void subseq(int ind,int n,ArrayList<Integer> l,ArrayList<Integer> arr,ArrayList<Integer> ds){
+        if(ind==n){
+            int sum=0;
+            for(int i=0;i<ds.size();i++){
+                sum+=ds.get(i);
+            }
+            l.add(sum);
+            return;
+        }
+        ds.add(arr.get(ind));
+        subseq(ind+1,n,l,arr,ds);
+        ds.remove(ds.size()-1);
+        subseq(ind+1,n,l,arr,ds);
+    }
+    ArrayList<Integer> subsetSums(ArrayList<Integer> arr, int n){
+        // code here
+        ArrayList<Integer> l=new ArrayList<>();
+        subseq(0,n,l,arr,new ArrayList<>());
+        return l;
+    }
+}
+
+Time: O(2^n)+O(2^n log(2^n)). Each index has two ways. You can either pick it up or not pick it.
+So for n index time complexity for O(2^n) and for sorting it will take (2^n log(2^n)).
+_______________________________________________________________________________
+#find unique subsets
+
+  class Solution {
+    private void subseq(int ind,int n,List<List<Integer>> arr,int nums[],List<Integer> ds){
+        if(ind==n){
+            List<Integer> l=new ArrayList<>(ds);
+            Collections.sort(l);
+            if(!arr.contains(l)){
+                arr.add(l);
+            }
+            return;
+        }
+        ds.add(nums[ind]);
+        subseq(ind+1,n,arr,nums,ds);
+        ds.remove(ds.size()-1);
+        subseq(ind+1,n,arr,nums,ds);
+    }
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> arr=new ArrayList<>();
+        int n=nums.length;
+        subseq(0,n,arr,nums,new ArrayList<>());
+        return arr;
+    }
+}
+time: O(k*2^n)
+_________________________________________
