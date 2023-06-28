@@ -1,3 +1,6 @@
+Because we have to find combinations and not max or min
+if max or min----------then dp lagta
+
 # sum of all subsets
 class Solution{
     private void subseq(int ind,int n,ArrayList<Integer> l,ArrayList<Integer> arr,ArrayList<Integer> ds){
@@ -51,3 +54,28 @@ _______________________________________________________________________________
 }
 time: O(k*2^n)
 _________________________________________
+# find unique subsets having a sum k
+
+class Solution {
+    private void comb(int ind,int[] arr,int target,List<List<Integer>> ans,List<Integer> ds){
+        if (ind==arr.length){
+            if (target==0){
+                ans.add(new ArrayList<>(ds));
+            }  
+            return;
+        }
+        
+        if(arr[ind]<=target){
+            ds.add(arr[ind]);
+            comb(ind,arr,target-arr[ind],ans,ds);
+            ds.remove(ds.size()-1);
+        }
+        comb(ind+1,arr,target,ans,ds);
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans=new ArrayList<>();
+        comb(0,candidates,target,ans,new ArrayList<>());
+        return ans;
+    }
+}
+time: O(2^t * k)
